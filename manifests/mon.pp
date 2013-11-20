@@ -1,5 +1,5 @@
 class cephdeploy::mon(
-  $user = 'cephdeploy',
+  $user = $::ceph_deploy_user,
 ){
 
   include cephdeploy

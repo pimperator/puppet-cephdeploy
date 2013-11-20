@@ -1,6 +1,6 @@
 class cephdeploy(
-  $user = 'cephdeploy',
-  $pass = '32ddq332dcasdc23',
+  $user = $::ceph_deploy_user,
+  $pass = $::ceph_deploy_password,
   $has_compute = false,
 ){
 
