@@ -85,8 +85,10 @@ class cephdeploy(
 
 ## Install ceph and dependencies
 
-  package {'python-pip':
-    ensure => installed,
+  if ! defined(Package['python-pip']) {
+    package {'python-pip':
+      ensure => installed,
+    }
   }
 
   exec {'install ceph-deploy':
