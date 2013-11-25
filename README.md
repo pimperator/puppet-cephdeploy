@@ -74,3 +74,76 @@ Create a client-only node
 The point of this class is to install ceph and its keys. This class should only be called on a node that is not running, or going to ever run, any additional ceph services. For example, this is what you want to use on a controller that has no mon.
 
     class {'cephdeploy::baseconfig': }
+
+
+
+
+
+Using puppet-cephdeploy with the stackforge/openstack-installer
+===============================================================
+
+in data/class_groups create:
+ceph_all.yaml
+ceph_mon.yaml
+ceph_osd.yaml
+
+ceph_all:
+class_groups:
+  - ceph_mon
+  - ceph_osd
+
+ceph_mon.yaml
+classes:
+  - cephdeploy
+  - cephdeploy::mon
+
+ceph_osd.yaml
+classes:
+  - cephdeploy
+  - cephdeploy::osdwrapper
+
+
+In data/hiera_data/hostname add a yaml override file for your OSD host. This is where you specify what disks to use as OSDs. 
+ceph.cisco.com.yaml:
+cephdeploy::osdwrapper::disks:
+  - sdb
+  - sdc
+
+Modify the relevent class_group file to call the ceph puppetry on your nodes (eg controller.yaml, compute.yaml)
+controller.yaml
+class_groups:
+  - glance_all
+  - keystone_all
+  - cinder_controller
+  - nova_controller
+  - horizon
+  - ceilometer_controller
+  - heat_all
+  - ceph_all
+  - "%{db_type}_database"
+classes:
+  - "nova::%{rpc_type}"
+  - "%{network_service}"
+  - "%{network_service}::plugins::%{network_plugin}"
+  - "%{network_service}::server"
+
+
+Add all your ceph configuration variables to data/hiera_data/user.common.yaml
+user.common.yaml
+# ceph config
+ceph_monitor_fsid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
+ceph_monitor_secret: 'AQAJzNxR+PNRIRAA7yUp9hJJdWZ3PVz242Xjiw=='
+cinder_rbd_user: 'admin'
+cinder_rbd_pool: 'volumes'
+cinder_rbd_secret_uuid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
+mon_initial_members: 'ceph'
+ceph_primary_mon: 'ceph.cisco.com'
+ceph_monitor_address: '10.0.0.1,' #leave the trailing comma I fix other code
+ceph_deploy_user: 'cephdeploy'
+ceph_deploy_password: '9jfd29k9kd9'
+ceph_cluster_interface: 'eth1'
+ceph_cluster_network: '10.0.0.0/24'
+ceph_public_interface: 'eth1'
+ceph_public_network: '10.0.0.0/24'
+glance_ceph_pool: 'images'
+
