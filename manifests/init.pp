@@ -141,7 +141,7 @@ class cephdeploy(
 
   exec { "install ceph":
     cwd      => "/home/$user/bootstrap",
-    command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install $::hostname",
+    command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install --stable emperor $::hostname",
     unless   => '/usr/bin/which ceph',
     require  => [ Exec['install ceph-deploy'], File['ceph.mon.keyring'], File["/home/$user/bootstrap"] ],
     user     => $user,

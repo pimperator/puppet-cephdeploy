@@ -16,7 +16,7 @@ define cephdeploy::osd(
   exec { "get config $disk":
     cwd     => "/home/$user/bootstrap",
     user    => $user,
-    command => "/usr/local/bin/ceph-deploy config push $::hostname",
+    command => "/usr/bin/sudo /usr/local/bin/ceph-deploy config push $::hostname",
     require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"] ],
     unless  => "/usr/bin/test -e /etc/ceph/ceph.conf",
   }
@@ -24,7 +24,7 @@ define cephdeploy::osd(
   exec { "gatherkeys_$disk":
     cwd     => "/home/$user/bootstrap",
     command => "/usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon",
-    require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"] ],
+    require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"], exec['create mon'] ],
     unless  => "/usr/bin/test -e /home/$user/bootstrap/ceph.bootstrap-osd.keyring",
   }
 
@@ -44,8 +44,8 @@ define cephdeploy::osd(
   exec { "create osd $disk":
     cwd     => "/home/$user/bootstrap",
     command => "/usr/local/bin/ceph-deploy --overwrite-conf osd create $::hostname:$disk",
-    require => Exec["zap $disk"],
     unless  => "/usr/bin/test -e /home/$user/zapped/$disk",
+    require => Exec["zap $disk"],
   }
   
   file { "/home/$user/zapped/$disk":
@@ -61,13 +61,13 @@ define cephdeploy::osd(
   if $setup_pools {
 
     exec { "create glance images pool $disk":
-      command => "/usr/bin/ceph osd pool create ${::glance_ceph_pool} 128",
+      command => "/usr/bin/ceph osd pool create $glance_pool} 128",
       unless => "/usr/bin/rados lspools | grep -sq $glance_pool",
       require => Exec["create osd $disk"],
     }
 
     exec { "create cinder volumes pool $disk":
-      command => "/usr/bin/ceph osd pool create $::cinder_rbd_pool 128",
+      command => "/usr/bin/ceph osd pool create $cinder_pool 128",
       unless => "/usr/bin/rados lspools | grep -sq $cinder_pool",
       require => Exec["create osd $disk"],
       notify => [ Service['cinder-volume'], Service['nova-compute'] ],
