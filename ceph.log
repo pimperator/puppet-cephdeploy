@@ -1,0 +1,310 @@
+2013-11-21 20:31:43,217 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:31:43,217 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:31:43,218 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:31:43,256 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:31:43,257 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:31:43,273 [ceph][DEBUG ] detect machine type
+2013-11-21 20:31:43,277 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:31:43,278 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:31:43,278 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:31:44,356 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/mon' not empty so not removed.
+2013-11-21 20:31:44,356 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/tmp' not empty so not removed.
+2013-11-21 20:31:44,521 [ceph][ERROR ] debconf: unable to initialize frontend: Dialog
+2013-11-21 20:31:44,522 [ceph][ERROR ] debconf: (TERM is not set, so the dialog frontend is not usable.)
+2013-11-21 20:31:44,522 [ceph][ERROR ] debconf: falling back to frontend: Readline
+2013-11-21 20:31:44,997 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:31:44,998 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:31:44,998 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:31:44,999 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:31:44,999 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:31:44,999 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:31:44,999 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:31:45,000 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:31:45,000 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:31:45,000 [ceph][DEBUG ] The following packages will be REMOVED:
+2013-11-21 20:31:45,000 [ceph][DEBUG ]   ceph* ceph-common* ceph-fs-common* ceph-mds*
+2013-11-21 20:31:45,001 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 4 to remove and 68 not upgraded.
+2013-11-21 20:31:45,001 [ceph][DEBUG ] After this operation, 161 MB disk space will be freed.
+2013-11-21 20:31:45,001 [ceph][DEBUG ] (Reading database ... 146386 files and directories currently installed.)
+2013-11-21 20:31:45,001 [ceph][DEBUG ] Removing ceph-mds ...
+2013-11-21 20:31:45,001 [ceph][DEBUG ] ceph-mds-all stop/waiting
+2013-11-21 20:31:45,001 [ceph][DEBUG ] Purging configuration files for ceph-mds ...
+2013-11-21 20:31:45,001 [ceph][DEBUG ] Removing ceph ...
+2013-11-21 20:31:45,001 [ceph][DEBUG ] ceph-all stop/waiting
+2013-11-21 20:31:45,002 [ceph][DEBUG ] Purging configuration files for ceph ...
+2013-11-21 20:31:45,002 [ceph][DEBUG ] Removing ceph-common ...
+2013-11-21 20:31:45,002 [ceph][DEBUG ] Purging configuration files for ceph-common ...
+2013-11-21 20:31:45,002 [ceph][DEBUG ] Removing ceph-fs-common ...
+2013-11-21 20:31:45,002 [ceph][DEBUG ] Processing triggers for man-db ...
+2013-11-21 20:31:45,003 [ceph][DEBUG ] Processing triggers for ureadahead ...
+2013-11-21 20:31:52,252 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:31:52,253 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:31:52,253 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:31:52,293 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:31:52,294 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:31:52,310 [ceph][DEBUG ] detect machine type
+2013-11-21 20:31:52,314 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:31:52,315 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:31:52,315 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:31:52,949 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:31:52,949 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:31:52,949 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:31:52,950 [ceph][DEBUG ] Package ceph is not installed, so not removed
+2013-11-21 20:31:52,950 [ceph][DEBUG ] Package ceph-common is not installed, so not removed
+2013-11-21 20:31:52,950 [ceph][DEBUG ] Package ceph-fs-common is not installed, so not removed
+2013-11-21 20:31:52,951 [ceph][DEBUG ] Package ceph-mds is not installed, so not removed
+2013-11-21 20:31:52,951 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:31:52,951 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:31:52,952 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:31:52,952 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:31:52,952 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:31:52,952 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:31:52,953 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 0 to remove and 68 not upgraded.
+2013-11-21 20:38:23,181 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:38:23,181 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:38:23,182 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:38:23,225 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:38:23,226 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:38:23,243 [ceph][DEBUG ] detect machine type
+2013-11-21 20:38:23,247 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:38:23,248 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:38:23,248 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:38:24,275 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/mon' not empty so not removed.
+2013-11-21 20:38:24,276 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/tmp' not empty so not removed.
+2013-11-21 20:38:24,441 [ceph][ERROR ] debconf: unable to initialize frontend: Dialog
+2013-11-21 20:38:24,442 [ceph][ERROR ] debconf: (TERM is not set, so the dialog frontend is not usable.)
+2013-11-21 20:38:24,442 [ceph][ERROR ] debconf: falling back to frontend: Readline
+2013-11-21 20:38:24,913 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:38:24,914 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:38:24,914 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:38:24,915 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:38:24,915 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:38:24,915 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:38:24,918 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:38:24,919 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:38:24,919 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:38:24,919 [ceph][DEBUG ] The following packages will be REMOVED:
+2013-11-21 20:38:24,919 [ceph][DEBUG ]   ceph* ceph-common* ceph-fs-common* ceph-mds*
+2013-11-21 20:38:24,920 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 4 to remove and 68 not upgraded.
+2013-11-21 20:38:24,920 [ceph][DEBUG ] After this operation, 161 MB disk space will be freed.
+2013-11-21 20:38:24,920 [ceph][DEBUG ] (Reading database ... 146386 files and directories currently installed.)
+2013-11-21 20:38:24,921 [ceph][DEBUG ] Removing ceph-mds ...
+2013-11-21 20:38:24,921 [ceph][DEBUG ] ceph-mds-all stop/waiting
+2013-11-21 20:38:24,921 [ceph][DEBUG ] Purging configuration files for ceph-mds ...
+2013-11-21 20:38:24,922 [ceph][DEBUG ] Removing ceph ...
+2013-11-21 20:38:24,922 [ceph][DEBUG ] ceph-all stop/waiting
+2013-11-21 20:38:24,922 [ceph][DEBUG ] Purging configuration files for ceph ...
+2013-11-21 20:38:24,922 [ceph][DEBUG ] Removing ceph-common ...
+2013-11-21 20:38:24,924 [ceph][DEBUG ] Purging configuration files for ceph-common ...
+2013-11-21 20:38:24,924 [ceph][DEBUG ] Removing ceph-fs-common ...
+2013-11-21 20:38:24,925 [ceph][DEBUG ] Processing triggers for man-db ...
+2013-11-21 20:38:24,926 [ceph][DEBUG ] Processing triggers for ureadahead ...
+2013-11-21 20:38:30,377 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:38:30,378 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:38:30,378 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:38:30,417 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:38:30,418 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:38:30,435 [ceph][DEBUG ] detect machine type
+2013-11-21 20:38:30,451 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:38:30,451 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:38:30,452 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:38:31,087 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:38:31,088 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:38:31,088 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:38:31,088 [ceph][DEBUG ] Package ceph is not installed, so not removed
+2013-11-21 20:38:31,089 [ceph][DEBUG ] Package ceph-common is not installed, so not removed
+2013-11-21 20:38:31,089 [ceph][DEBUG ] Package ceph-fs-common is not installed, so not removed
+2013-11-21 20:38:31,090 [ceph][DEBUG ] Package ceph-mds is not installed, so not removed
+2013-11-21 20:38:31,090 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:38:31,090 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:38:31,091 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:38:31,091 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:38:31,091 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:38:31,092 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:38:31,092 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 0 to remove and 68 not upgraded.
+2013-11-21 20:40:07,800 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:40:07,800 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:40:07,801 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:40:07,847 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:40:07,849 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:40:07,866 [ceph][DEBUG ] detect machine type
+2013-11-21 20:40:07,870 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:40:07,871 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:40:07,871 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:40:08,898 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/mon' not empty so not removed.
+2013-11-21 20:40:08,898 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/tmp' not empty so not removed.
+2013-11-21 20:40:09,119 [ceph][ERROR ] debconf: unable to initialize frontend: Dialog
+2013-11-21 20:40:09,119 [ceph][ERROR ] debconf: (TERM is not set, so the dialog frontend is not usable.)
+2013-11-21 20:40:09,120 [ceph][ERROR ] debconf: falling back to frontend: Readline
+2013-11-21 20:40:09,489 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:40:09,489 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:40:09,490 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:40:09,490 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:40:09,490 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:40:09,491 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:40:09,491 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:40:09,491 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:40:09,491 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:40:09,492 [ceph][DEBUG ] The following packages will be REMOVED:
+2013-11-21 20:40:09,492 [ceph][DEBUG ]   ceph* ceph-common* ceph-fs-common* ceph-mds*
+2013-11-21 20:40:09,492 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 4 to remove and 68 not upgraded.
+2013-11-21 20:40:09,492 [ceph][DEBUG ] After this operation, 161 MB disk space will be freed.
+2013-11-21 20:40:09,493 [ceph][DEBUG ] (Reading database ... 146386 files and directories currently installed.)
+2013-11-21 20:40:09,493 [ceph][DEBUG ] Removing ceph-mds ...
+2013-11-21 20:40:09,493 [ceph][DEBUG ] ceph-mds-all stop/waiting
+2013-11-21 20:40:09,493 [ceph][DEBUG ] Purging configuration files for ceph-mds ...
+2013-11-21 20:40:09,493 [ceph][DEBUG ] Removing ceph ...
+2013-11-21 20:40:09,493 [ceph][DEBUG ] ceph-all stop/waiting
+2013-11-21 20:40:09,493 [ceph][DEBUG ] Purging configuration files for ceph ...
+2013-11-21 20:40:09,493 [ceph][DEBUG ] Removing ceph-common ...
+2013-11-21 20:40:09,493 [ceph][DEBUG ] Purging configuration files for ceph-common ...
+2013-11-21 20:40:09,494 [ceph][DEBUG ] Removing ceph-fs-common ...
+2013-11-21 20:40:09,494 [ceph][DEBUG ] Processing triggers for man-db ...
+2013-11-21 20:40:09,494 [ceph][DEBUG ] Processing triggers for ureadahead ...
+2013-11-21 20:40:21,144 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:40:21,145 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:40:21,145 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:40:21,188 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:40:21,189 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:40:21,206 [ceph][DEBUG ] detect machine type
+2013-11-21 20:40:21,209 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:40:21,209 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:40:21,209 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:40:21,733 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:40:21,734 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:40:21,734 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:40:21,734 [ceph][DEBUG ] Package ceph is not installed, so not removed
+2013-11-21 20:40:21,735 [ceph][DEBUG ] Package ceph-common is not installed, so not removed
+2013-11-21 20:40:21,735 [ceph][DEBUG ] Package ceph-fs-common is not installed, so not removed
+2013-11-21 20:40:21,735 [ceph][DEBUG ] Package ceph-mds is not installed, so not removed
+2013-11-21 20:40:21,736 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:40:21,736 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:40:21,736 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:40:21,737 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:40:21,737 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:40:21,737 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:40:21,737 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 0 to remove and 68 not upgraded.
+2013-11-21 20:49:10,349 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:49:10,349 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:49:10,350 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:49:10,394 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:49:10,395 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:49:10,411 [ceph][DEBUG ] detect machine type
+2013-11-21 20:49:10,428 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:49:10,428 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:49:10,429 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:49:11,563 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/mon' not empty so not removed.
+2013-11-21 20:49:11,564 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/tmp' not empty so not removed.
+2013-11-21 20:49:11,728 [ceph][ERROR ] debconf: unable to initialize frontend: Dialog
+2013-11-21 20:49:11,728 [ceph][ERROR ] debconf: (TERM is not set, so the dialog frontend is not usable.)
+2013-11-21 20:49:11,729 [ceph][ERROR ] debconf: falling back to frontend: Readline
+2013-11-21 20:49:12,097 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:49:12,098 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:49:12,098 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:49:12,099 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:49:12,099 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:49:12,099 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:49:12,099 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:49:12,100 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:49:12,100 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:49:12,100 [ceph][DEBUG ] The following packages will be REMOVED:
+2013-11-21 20:49:12,100 [ceph][DEBUG ]   ceph* ceph-common* ceph-fs-common* ceph-mds*
+2013-11-21 20:49:12,101 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 4 to remove and 68 not upgraded.
+2013-11-21 20:49:12,101 [ceph][DEBUG ] After this operation, 161 MB disk space will be freed.
+2013-11-21 20:49:12,101 [ceph][DEBUG ] (Reading database ... 146386 files and directories currently installed.)
+2013-11-21 20:49:12,101 [ceph][DEBUG ] Removing ceph-mds ...
+2013-11-21 20:49:12,101 [ceph][DEBUG ] ceph-mds-all stop/waiting
+2013-11-21 20:49:12,101 [ceph][DEBUG ] Purging configuration files for ceph-mds ...
+2013-11-21 20:49:12,102 [ceph][DEBUG ] Removing ceph ...
+2013-11-21 20:49:12,102 [ceph][DEBUG ] ceph-all stop/waiting
+2013-11-21 20:49:12,103 [ceph][DEBUG ] Purging configuration files for ceph ...
+2013-11-21 20:49:12,103 [ceph][DEBUG ] Removing ceph-common ...
+2013-11-21 20:49:12,103 [ceph][DEBUG ] Purging configuration files for ceph-common ...
+2013-11-21 20:49:12,104 [ceph][DEBUG ] Removing ceph-fs-common ...
+2013-11-21 20:49:12,104 [ceph][DEBUG ] Processing triggers for man-db ...
+2013-11-21 20:49:12,104 [ceph][DEBUG ] Processing triggers for ureadahead ...
+2013-11-21 20:49:19,121 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:49:19,122 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:49:19,122 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:49:19,210 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:49:19,211 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:49:19,235 [ceph][DEBUG ] detect machine type
+2013-11-21 20:49:19,238 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:49:19,239 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:49:19,240 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:49:19,816 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:49:19,817 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:49:19,817 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:49:19,818 [ceph][DEBUG ] Package ceph is not installed, so not removed
+2013-11-21 20:49:19,818 [ceph][DEBUG ] Package ceph-common is not installed, so not removed
+2013-11-21 20:49:19,818 [ceph][DEBUG ] Package ceph-fs-common is not installed, so not removed
+2013-11-21 20:49:19,819 [ceph][DEBUG ] Package ceph-mds is not installed, so not removed
+2013-11-21 20:49:19,819 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:49:19,819 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:49:19,820 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:49:19,820 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:49:19,820 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:49:19,820 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:49:19,821 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 0 to remove and 68 not upgraded.
+2013-11-21 20:52:56,818 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:52:56,818 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:52:56,819 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:52:56,859 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:52:56,860 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:52:56,876 [ceph][DEBUG ] detect machine type
+2013-11-21 20:52:56,881 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:52:56,881 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:52:56,881 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:52:57,969 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/mon' not empty so not removed.
+2013-11-21 20:52:57,969 [ceph][ERROR ] dpkg: warning: while removing ceph, directory '/var/lib/ceph/tmp' not empty so not removed.
+2013-11-21 20:52:58,184 [ceph][ERROR ] debconf: unable to initialize frontend: Dialog
+2013-11-21 20:52:58,185 [ceph][ERROR ] debconf: (TERM is not set, so the dialog frontend is not usable.)
+2013-11-21 20:52:58,185 [ceph][ERROR ] debconf: falling back to frontend: Readline
+2013-11-21 20:52:58,502 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:52:58,502 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:52:58,503 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:52:58,503 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:52:58,503 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:52:58,504 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:52:58,504 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:52:58,504 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:52:58,505 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:52:58,505 [ceph][DEBUG ] The following packages will be REMOVED:
+2013-11-21 20:52:58,505 [ceph][DEBUG ]   ceph* ceph-common* ceph-fs-common* ceph-mds*
+2013-11-21 20:52:58,506 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 4 to remove and 68 not upgraded.
+2013-11-21 20:52:58,506 [ceph][DEBUG ] After this operation, 161 MB disk space will be freed.
+2013-11-21 20:52:58,506 [ceph][DEBUG ] (Reading database ... 146386 files and directories currently installed.)
+2013-11-21 20:52:58,506 [ceph][DEBUG ] Removing ceph-mds ...
+2013-11-21 20:52:58,507 [ceph][DEBUG ] ceph-mds-all stop/waiting
+2013-11-21 20:52:58,507 [ceph][DEBUG ] Purging configuration files for ceph-mds ...
+2013-11-21 20:52:58,507 [ceph][DEBUG ] Removing ceph ...
+2013-11-21 20:52:58,507 [ceph][DEBUG ] ceph-all stop/waiting
+2013-11-21 20:52:58,508 [ceph][DEBUG ] Purging configuration files for ceph ...
+2013-11-21 20:52:58,508 [ceph][DEBUG ] Removing ceph-common ...
+2013-11-21 20:52:58,508 [ceph][DEBUG ] Purging configuration files for ceph-common ...
+2013-11-21 20:52:58,508 [ceph][DEBUG ] Removing ceph-fs-common ...
+2013-11-21 20:52:58,509 [ceph][DEBUG ] Processing triggers for man-db ...
+2013-11-21 20:52:58,509 [ceph][DEBUG ] Processing triggers for ureadahead ...
+2013-11-21 20:53:04,502 [ceph_deploy.cli][INFO  ] Invoked (1.3.2): /usr/local/bin/ceph-deploy purge ceph
+2013-11-21 20:53:04,502 [ceph_deploy.install][DEBUG ] Purging from cluster ceph hosts ceph
+2013-11-21 20:53:04,502 [ceph_deploy.install][DEBUG ] Detecting platform for host ceph ...
+2013-11-21 20:53:04,546 [ceph][DEBUG ] connected to host: ceph 
+2013-11-21 20:53:04,547 [ceph][DEBUG ] detect platform information from remote host
+2013-11-21 20:53:04,563 [ceph][DEBUG ] detect machine type
+2013-11-21 20:53:04,567 [ceph_deploy.install][INFO  ] Distro info: Ubuntu 12.04 precise
+2013-11-21 20:53:04,567 [ceph][INFO  ] purging host ... ceph
+2013-11-21 20:53:04,568 [ceph][INFO  ] Running command: apt-get -q remove -f -y --force-yes --purge -- ceph ceph-mds ceph-common ceph-fs-common
+2013-11-21 20:53:05,090 [ceph][DEBUG ] Reading package lists...
+2013-11-21 20:53:05,090 [ceph][DEBUG ] Building dependency tree...
+2013-11-21 20:53:05,090 [ceph][DEBUG ] Reading state information...
+2013-11-21 20:53:05,090 [ceph][DEBUG ] Package ceph is not installed, so not removed
+2013-11-21 20:53:05,091 [ceph][DEBUG ] Package ceph-common is not installed, so not removed
+2013-11-21 20:53:05,091 [ceph][DEBUG ] Package ceph-fs-common is not installed, so not removed
+2013-11-21 20:53:05,092 [ceph][DEBUG ] Package ceph-mds is not installed, so not removed
+2013-11-21 20:53:05,092 [ceph][DEBUG ] The following packages were automatically installed and are no longer required:
+2013-11-21 20:53:05,092 [ceph][DEBUG ]   libboost-filesystem1.46.1 cryptsetup-bin libtcmalloc-minimal0
+2013-11-21 20:53:05,092 [ceph][DEBUG ]   libtcmalloc-minimal4 libboost-system1.46.1 libboost-program-options1.46.1
+2013-11-21 20:53:05,093 [ceph][DEBUG ]   libpcrecpp0 xfsprogs libboost1.46-dev libgoogle-perftools0 libcryptsetup4
+2013-11-21 20:53:05,093 [ceph][DEBUG ]   libboost-dev mongodb-dev libunwind7 libunwind8 libsnappy1
+2013-11-21 20:53:05,093 [ceph][DEBUG ] Use 'apt-get autoremove' to remove them.
+2013-11-21 20:53:05,093 [ceph][DEBUG ] 0 upgraded, 0 newly installed, 0 to remove and 68 not upgraded.

@@ -1,9 +1,15 @@
 define cephdeploy::osd(
-  $setup_pools = false,
+  $setup_pools            = false,
+  $user                   = hiera('ceph_deploy_user'),
+  $ceph_primary_mon       = hiera('ceph_primary_mon'),
+  $cluster_interface      = hiera('ceph_cluster_interface'),
+  $cluster_network        = hiera('ceph_cluster_network'),
+  $glance_pool            = hiera('glance_ceph_pool'),
+  $cinder_pool            = hiera('cinder_rbd_pool'),
+  
 ){
 
   include cephdeploy
-  $user = $::ceph_deploy_user
   $disk = $name
 
   exec { "get config $disk":
@@ -16,7 +22,7 @@ define cephdeploy::osd(
     
   exec { "gatherkeys_$disk":
     cwd     => "/home/$user/bootstrap",
-    command => "/usr/local/bin/ceph-deploy gatherkeys $::ceph_primary_mon",
+    command => "/usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon",
     require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"] ],
     unless  => "/usr/bin/test -e /home/$user/bootstrap/ceph.bootstrap-osd.keyring",
   }
@@ -47,7 +53,7 @@ define cephdeploy::osd(
   }
 
   exec {"iptables osd $disk":
-    command => "/sbin/iptables -A INPUT -i $::ceph_cluster_interface  -m multiport -p tcp -s $::ceph_cluster_network --dports 6800:6810 -j ACCEPT",
+    command => "/sbin/iptables -A INPUT -i $cluster_interface  -m multiport -p tcp -s $cluster_network --dports 6800:6810 -j ACCEPT",
     unless  => '/sbin/iptables -L | grep "multiport dports 6800:6810"',
   }
 
@@ -55,13 +61,13 @@ define cephdeploy::osd(
 
     exec { "create glance images pool $disk":
       command => "/usr/bin/ceph osd pool create ${::glance_ceph_pool} 128",
-      unless => "/usr/bin/rados lspools | grep -sq $::glance_ceph_pool",
+      unless => "/usr/bin/rados lspools | grep -sq $glance_pool",
       require => Exec["create osd $disk"],
     }
 
     exec { "create cinder volumes pool $disk":
       command => "/usr/bin/ceph osd pool create $::cinder_rbd_pool 128",
-      unless => "/usr/bin/rados lspools | grep -sq $::cinder_rbd_pool",
+      unless => "/usr/bin/rados lspools | grep -sq $cinder_pool",
       require => Exec["create osd $disk"],
       notify => [ Service['cinder-volume'], Service['nova-compute'] ],
     }
