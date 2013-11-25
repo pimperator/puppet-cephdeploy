@@ -72,7 +72,7 @@ class cephdeploy(
     group   => $user,
     mode    => 0777,
     path    => "/home/$user/bootstrap/ceph.log",
-    require => [ Exec["install ceph"], File["/etc/sudoers.d/$user"], File["/home/$user"] ],
+    require => [ Exec["install ceph"], File["/etc/sudoers.d/$user"], File["/home/$user"], User[$user] ],
   }
 
   exec {'passwordless sudo for ceph deploy user':
@@ -86,6 +86,8 @@ class cephdeploy(
   }
 
   file { "/home/$user/zapped":
+    owner   => $user,
+    group   => $user,
     ensure  => directory,
     require => File["/home/$user"]
   }

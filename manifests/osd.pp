@@ -10,6 +10,7 @@ define cephdeploy::osd(
 ){
 
   include cephdeploy
+  include cephdeploy::mon
   $disk = $name
 
   exec { "get config $disk":
