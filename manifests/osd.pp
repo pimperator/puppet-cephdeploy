@@ -1,5 +1,5 @@
 define cephdeploy::osd(
-  $setup_pools            = false,
+  $setup_pools            = true,
   $user                   = hiera('ceph_deploy_user'),
   $ceph_primary_mon       = hiera('ceph_primary_mon'),
   $cluster_interface      = hiera('ceph_cluster_interface'),
@@ -61,14 +61,16 @@ define cephdeploy::osd(
   if $setup_pools {
 
     exec { "create glance images pool $disk":
-      command => "/usr/bin/ceph osd pool create $glance_pool} 128",
-      unless => "/usr/bin/rados lspools | grep -sq $glance_pool",
+      command => "/usr/bin/ceph osd pool create $glance_pool 128",
+#      unless => "/usr/bin/rados lspools | grep -sq $glance_pool",
+      unless => "/usr/bin/rados lspools  | /bin/egrep ^$glance_pool$",
       require => Exec["create osd $disk"],
     }
 
     exec { "create cinder volumes pool $disk":
       command => "/usr/bin/ceph osd pool create $cinder_pool 128",
-      unless => "/usr/bin/rados lspools | grep -sq $cinder_pool",
+#      unless => "/usr/bin/rados lspools | grep -sq $cinder_pool",
+      unless => "/usr/bin/rados lspools | /bin/egrep ^$cinder_pool$",
       require => Exec["create osd $disk"],
       notify => [ Service['cinder-volume'], Service['nova-compute'] ],
     }

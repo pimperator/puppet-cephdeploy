@@ -1,5 +1,5 @@
 class cephdeploy(
-  $has_compute          = false,
+  $has_compute          = true,
   $user                 = hiera('ceph_deploy_user'),
   $pass                 = hiera('ceph_deploy_password'),
   $fsid                 = hiera('ceph_monitor_fsid'),
@@ -153,24 +153,31 @@ class cephdeploy(
     require => Exec['install ceph'],
   }
 
+  file {'conf perms':
+    mode    => 0644,
+    path    => '/etc/ceph/ceph.conf',
+    require => Exec['install ceph'],
+  }
+
+
 ## If the ceph node is also running nova-compute
 
   if $has_compute {
 
     file { '/etc/ceph/secret.xml':
       content => template('cephdeploy/secret.xml-compute.erb'),
-      require => Exec["install ceph"],
+      require => Exec['install ceph'],
     }
 
     exec { 'get-or-set virsh secret':
       command => '/usr/bin/virsh secret-define --file /etc/ceph/secret.xml | /usr/bin/awk \'{print $2}\' | sed \'/^$/d\' > /etc/ceph/virsh.secret',
       creates => "/etc/ceph/virsh.secret",
-      require => [ File['ceph.conf'], Package['libvirt-bin'], File['/etc/ceph/secret.xml'] ],
+      require => [ Package['libvirt-bin'], File['/etc/ceph/secret.xml'] ],
     }
 
     exec { 'set-secret-value virsh':
       command => "/usr/bin/virsh secret-set-value --secret $(cat /etc/ceph/virsh.secret) --base64 $(ceph auth get-key client.admin)",
-      require => [ Exec['get-or-set virsh secret'], Exec['install ceph'] ],
+      require => Exec['get-or-set virsh secret'],
     }
 
   }
