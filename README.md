@@ -12,6 +12,9 @@ Donald Talton
 dotalton@cisco.com
 
 
+* for this installation, use either the puppet2 or puppet3 versions depending on your puppet version
+
+
 site.pp variables
 -----------------
 
@@ -79,57 +82,63 @@ The point of this class is to install ceph and its keys. This class should only 
 
 
 
-Using puppet-cephdeploy with the stackforge/openstack-installer
+Using puppet-cephdeploy with the stackforge/openstack-installer (use the stable/oi-aio branch)
 ===============================================================
 
-in data/class_groups create:
+Follow the instructions for deploy an AIO node using the puppet_openstack_builder, then:
+
+in data/class_groups create files:
+```
 ceph_all.yaml
 ceph_mon.yaml
 ceph_osd.yaml
+```
 
 ceph_all:
+```
 class_groups:
   - ceph_mon
   - ceph_osd
+```
 
 ceph_mon.yaml
+```
 classes:
   - cephdeploy
   - cephdeploy::mon
+```
 
 ceph_osd.yaml
+```
 classes:
   - cephdeploy
   - cephdeploy::osdwrapper
+```
 
 
-In data/hiera_data/hostname add a yaml override file for your OSD host. This is where you specify what disks to use as OSDs. 
-ceph.cisco.com.yaml:
+
+In data/hiera_data/hostname add a yaml override file for your OSD host. This is where you specify what disks to use as OSDs. The name of the yaml file should be the short hostname of the host you are configuring the OSDs for.
+
+ceph.yaml:
+```
 cephdeploy::osdwrapper::disks:
   - sdb
   - sdc
+```
 
 Modify the relevent class_group file to call the ceph puppetry on your nodes (eg controller.yaml, compute.yaml)
-controller.yaml
-class_groups:
-  - glance_all
-  - keystone_all
-  - cinder_controller
-  - nova_controller
-  - horizon
-  - ceilometer_controller
-  - heat_all
-  - ceph_all
-  - "%{db_type}_database"
-classes:
-  - "nova::%{rpc_type}"
-  - "%{network_service}"
-  - "%{network_service}::plugins::%{network_plugin}"
-  - "%{network_service}::server"
 
+controller.yaml
+```
+class_groups:
+  - ...
+  - ceph_all
+```
 
 Add all your ceph configuration variables to data/hiera_data/user.common.yaml
+
 user.common.yaml
+```
 # ceph config
 ceph_monitor_fsid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
 ceph_monitor_secret: 'AQAJzNxR+PNRIRAA7yUp9hJJdWZ3PVz242Xjiw=='
@@ -146,4 +155,33 @@ ceph_cluster_network: '10.0.0.0/24'
 ceph_public_interface: 'eth1'
 ceph_public_network: '10.0.0.0/24'
 glance_ceph_pool: 'images'
+```
+
+
+Modify the hiera data for configuring cinder and glance to use RBD as their backends:
+
+
+in data/global_hiera_params/common.yaml:
+```
+cinder_backend: rbd
+glance_backend: rbd
+```
+
+
+in data/hiera_data/cinder_backend/rbd.yaml:
+```
+cinder::volume::rbd::rbd_pool: 'volumes'
+cinder::volume::rbd::glance_api_version: '2'
+cinder::volume::rbd::rbd_user: 'admin'
+cinder::volume::rbd::rbd_secret_uuid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
+```
+
+in data/hiera_data/glance_backend/rbd.yaml:
+```
+glance::backend::rbd::rbd_store_user: 'admin'
+glance::backend::rbd::rbd_store_ceph_conf: '/etc/ceph/ceph.conf'
+glance::backend::rbd::rbd_store_pool: 'images'
+glance::backend::rbd::rbd_store_chunk_size: '8'
+```
+
 
