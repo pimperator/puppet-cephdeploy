@@ -144,17 +144,17 @@ ceph_monitor_fsid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
 ceph_monitor_secret: 'AQAJzNxR+PNRIRAA7yUp9hJJdWZ3PVz242Xjiw=='
 cinder_rbd_user: 'admin'
 cinder_rbd_pool: 'volumes'
+glance_ceph_pool: 'images'
 cinder_rbd_secret_uuid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
-mon_initial_members: 'ceph'
-ceph_primary_mon: 'ceph.cisco.com'
-ceph_monitor_address: '10.0.0.1,' #leave the trailing comma I fix other code
+mon_initial_members: 'ceph' #be sure to use the short hostname eg. hostname -s
+ceph_primary_mon: 'ceph' #be sure to use the short hostname eg. hostname -s
+ceph_monitor_address: '10.0.0.1,' #leave the trailing comma until I fix this issue
 ceph_deploy_user: 'cephdeploy'
 ceph_deploy_password: '9jfd29k9kd9'
 ceph_cluster_interface: 'eth1'
 ceph_cluster_network: '10.0.0.0/24'
 ceph_public_interface: 'eth1'
 ceph_public_network: '10.0.0.0/24'
-glance_ceph_pool: 'images'
 ```
 
 
@@ -173,7 +173,8 @@ in data/hiera_data/cinder_backend/rbd.yaml:
 cinder::volume::rbd::rbd_pool: 'volumes'
 cinder::volume::rbd::glance_api_version: '2'
 cinder::volume::rbd::rbd_user: 'admin'
-cinder::volume::rbd::rbd_secret_uuid: 'e80afa94-a64c-486c-9e34-d55e85f26406'
+# keep this the same as your ceph_monitor_fsid ▼ 
+cinder::volume::rbd::rbd_secret_uuid: 'e80afa94-a64c-486c-9e34-d55e85f26406' 
 ```
 
 in data/hiera_data/glance_backend/rbd.yaml:
