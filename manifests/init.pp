@@ -77,7 +77,7 @@ class cephdeploy(
   }
 
   exec {'passwordless sudo for ceph deploy user':
-    command => "/bin/echo \"$user ALL = NOPASSWD:ALL\" | sudo tee /etc/sudoers.d/$user",
+    command => "/bin/echo \"$user ALL=(ALL) NOPASSWD: ALL\" | sudo tee /etc/sudoers.d/$user",
     unless  => "/usr/bin/test -e /etc/sudoers.d/$user",
   }
 
@@ -109,8 +109,9 @@ class cephdeploy(
   }
 
   exec {'install ceph-deploy':
-    command => '/usr/local/bin/pip install ceph-deploy', 
-    unless  => '/usr/local/bin/pip install ceph-deploy | /bin/grep satisfied',
+    path    => '/usr/bin:/usr/local/bin',
+    command => 'pip install ceph-deploy', 
+    unless  => 'pip install ceph-deploy | /bin/grep satisfied',
     require => [ Package['python-pip'], File["/home/$user"] ],
   }
 
@@ -147,7 +148,7 @@ class cephdeploy(
 
   exec { "install ceph":
     cwd      => "/home/$user/bootstrap",
-    command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install --stable $release $::hostname",
+    command  => "/usr/local/bin/ceph-deploy install --stable $release $::hostname",
     unless   => '/usr/bin/which ceph',
     require  => [ Exec['install ceph-deploy'], File['ceph.mon.keyring'], File["/home/$user/bootstrap"], Package['libgoogle-perftools0'] ],
     user     => $user,
@@ -163,6 +164,16 @@ class cephdeploy(
     mode    => 0644,
     path    => '/etc/ceph/ceph.conf',
     require => Exec['install ceph'],
+  }
+
+  file { 'osd bootstrap key':
+    path => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
+    mode => 0640,
+  }
+
+  file { 'mds bootstrap key':
+    path => '/var/lib/ceph/bootstrap-mds/ceph.keyring',
+    mode => 0640,
   }
 
 
