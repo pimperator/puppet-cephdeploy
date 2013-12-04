@@ -1,4 +1,5 @@
 class cephdeploy(
+  $release              = 'dumpling',
   $has_compute          = true,
   $user                 = hiera('ceph_deploy_user'),
   $pass                 = hiera('ceph_deploy_password'),
@@ -141,7 +142,7 @@ class cephdeploy(
 
   exec { "install ceph":
     cwd      => "/home/$user/bootstrap",
-    command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install --stable emperor $::hostname",
+    command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install --stable $release $::hostname",
     unless   => '/usr/bin/which ceph',
     require  => [ Exec['install ceph-deploy'], File['ceph.mon.keyring'], File["/home/$user/bootstrap"] ],
     user     => $user,
