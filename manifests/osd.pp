@@ -22,9 +22,9 @@ define cephdeploy::osd(
   }
     
   exec { "gatherkeys_$disk":
-    user    => 'cephdeploy',
+    user    => $user,
     cwd     => "/home/$user/bootstrap",
-    command => "/usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon",
+    command => "/usr/bin/sudo /usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon",
     require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"], exec['create mon'] ],
     unless  => '/usr/bin/test -e /home/$user/bootstrap/ceph.mon.keyring',
   }

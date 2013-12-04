@@ -76,7 +76,7 @@ class cephdeploy(
   }
 
   exec {'passwordless sudo for ceph deploy user':
-    command => "/bin/echo \"$user ALL = (root) NOPASSWD:ALL\" | sudo tee /etc/sudoers.d/$user",
+    command => "/bin/echo \"$user ALL = NOPASSWD:ALL\" | sudo tee /etc/sudoers.d/$user",
     unless  => "/usr/bin/test -e /etc/sudoers.d/$user",
   }
 
