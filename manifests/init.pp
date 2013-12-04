@@ -109,8 +109,8 @@ class cephdeploy(
   }
 
   exec {'install ceph-deploy':
-    command => '/usr/bin/pip install ceph-deploy', 
-    unless  => '/usr/bin/pip install ceph-deploy | /bin/grep satisfied',
+    command => '/usr/local/bin/pip install ceph-deploy', 
+    unless  => '/usr/local/bin/pip install ceph-deploy | /bin/grep satisfied',
     require => [ Package['python-pip'], File["/home/$user"] ],
   }
 
@@ -140,11 +140,16 @@ class cephdeploy(
     require => File["/home/$user/bootstrap/ceph.conf"],
   }
 
+  package { 'libgoogle-perftools0':
+    ensure  => present,
+    require => File["ceph.mon.keyring"],
+  }
+
   exec { "install ceph":
     cwd      => "/home/$user/bootstrap",
     command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install --stable $release $::hostname",
     unless   => '/usr/bin/which ceph',
-    require  => [ Exec['install ceph-deploy'], File['ceph.mon.keyring'], File["/home/$user/bootstrap"] ],
+    require  => [ Exec['install ceph-deploy'], File['ceph.mon.keyring'], File["/home/$user/bootstrap"], Package['libgoogle-perftools0'] ],
     user     => $user,
   }
 
