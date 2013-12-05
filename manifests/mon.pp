@@ -27,6 +27,7 @@ class cephdeploy::mon(
                   chmod 644 /home/$user/bootstrap/*
                   ",
       require => Exec['create mon'],
+      unless  => "/usr/bin/test -e /home/$user/bootstrap/$cluster.bootstrap-osd.keyring",
     }
   }
 
