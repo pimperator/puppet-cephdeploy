@@ -1,4 +1,5 @@
 class cephdeploy::mon(
+  $cluster = 'ceph',
   $ceph_primary_mon = hiera('ceph_primary_mon'),
   $user             = hiera('ceph_deploy_user'),
   $public_interface = hiera('ceph_public_interface'),
@@ -17,11 +18,12 @@ class cephdeploy::mon(
 
   if $ceph_primary_mon == $::hostname {
     exec { 'copy keys':
-      command => "cp /var/lib/ceph/bootstrap-mds/$cluster.keyring /home/$user/bootstrap/$cluster.bootstrap-mds.keyring \
-                  cp /var/lib/ceph/bootstrap-osd/$cluster.keyring /home/$user/bootstrap/$cluster.bootstrap-osd.keyring \
-                  cp /etc/ceph/ceph.client.admin.keyring /home/$user/bootstrap/ceph.client.admin.keyring \
-                  cp /var/lib/ceph/mon/ceph-$ceph_primary_mon/keyring /home/$user/bootstrap/ceph.mon.keyring \
-                  chown $user:$user /home/$user/bootstrap/* \
+      path    => '/bin:/usr/bin',
+      command => "cp /var/lib/ceph/bootstrap-mds/$cluster.keyring /home/$user/bootstrap/$cluster.bootstrap-mds.keyring &&
+                  cp /var/lib/ceph/bootstrap-osd/$cluster.keyring /home/$user/bootstrap/$cluster.bootstrap-osd.keyring &&
+                  cp /etc/ceph/ceph.client.admin.keyring /home/$user/bootstrap/ceph.client.admin.keyring &&
+                  cp /var/lib/ceph/mon/ceph-$ceph_primary_mon/keyring /home/$user/bootstrap/ceph.mon.keyring &&
+                  chown $user:$user /home/$user/bootstrap/* &&
                   chmod 644 /home/$user/bootstrap/*
                   ",
       require => Exec['create mon'],
