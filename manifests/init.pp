@@ -143,12 +143,12 @@ class cephdeploy(
 
   package { 'libgoogle-perftools0':
     ensure  => present,
-    require => File["ceph.mon.keyring"],
+    require => Exec['install ceph-deploy'],
   }
 
   exec { "install ceph":
     cwd      => "/home/$user/bootstrap",
-    command  => "/usr/local/bin/ceph-deploy install --stable $release $::hostname",
+    command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy install --stable $release $::hostname",
     unless   => '/usr/bin/which ceph',
     require  => [ Exec['install ceph-deploy'], File['ceph.mon.keyring'], File["/home/$user/bootstrap"], Package['libgoogle-perftools0'] ],
     user     => $user,
@@ -166,15 +166,15 @@ class cephdeploy(
     require => Exec['install ceph'],
   }
 
-  file { 'osd bootstrap key':
-    path => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
-    mode => 0640,
-  }
+#  file { 'osd bootstrap key':
+#    path => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
+#    mode => 0640,
+#  }
 
-  file { 'mds bootstrap key':
-    path => '/var/lib/ceph/bootstrap-mds/ceph.keyring',
-    mode => 0640,
-  }
+#  file { 'mds bootstrap key':
+#    path => '/var/lib/ceph/bootstrap-mds/ceph.keyring',
+#    mode => 0640,
+#  }
 
 
 ## If the ceph node is also running nova-compute
