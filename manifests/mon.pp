@@ -6,6 +6,16 @@ class cephdeploy::mon(
 
   include cephdeploy
 
+  file { "/var/lib/ceph/$cluster.bootstrap-osd.keyring":
+    mode => 0644,
+    require => Exec['create mon'],
+  }
+
+  file { "/var/lib/ceph/$cluster.bootstrap-mds.keyring":
+    mode => 0644,
+    require => Exec['create mon'],
+  }
+
   exec { 'create mon':
     cwd      => "/home/$user/bootstrap",
     command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy mon create $::hostname",

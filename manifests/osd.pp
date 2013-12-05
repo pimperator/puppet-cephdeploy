@@ -1,5 +1,6 @@
 define cephdeploy::osd(
   $setup_pools            = true,
+  $cluster                = 'ceph',
   $user                   = hiera('ceph_deploy_user'),
   $ceph_primary_mon       = hiera('ceph_primary_mon'),
   $cluster_interface      = hiera('ceph_cluster_interface'),
@@ -10,7 +11,7 @@ define cephdeploy::osd(
 ){
 
   include cephdeploy
-  include cephdeploy::mon
+#  include cephdeploy::mon
   $disk = $name
 
   exec { "get config $disk":
@@ -20,13 +21,19 @@ define cephdeploy::osd(
     require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"] ],
     unless  => "/usr/bin/test -e /etc/ceph/ceph.conf",
   }
-    
+
+  if $::hostname == $ceph_primary_mon {
+    $doisudo = "/usr/bin/sudo /usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon"
+  } else {
+    $doisudo = "/usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon"
+  }
+
   exec { "gatherkeys_$disk":
+    command => $doisudo,
     user    => $user,
     cwd     => "/home/$user/bootstrap",
-    command => "/usr/bin/sudo /usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon",
-    require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"], Exec['create mon'] ],
-    unless  => '/usr/bin/test -e /home/$user/bootstrap/ceph.mon.keyring',
+    require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"] ],
+    unless  => '/usr/bin/test -e /home/$user/bootstrap/$cluster.bootstrap-osd.keyring',
   }
 
   exec {"copy admin key $disk":

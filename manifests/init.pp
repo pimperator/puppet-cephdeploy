@@ -166,17 +166,6 @@ class cephdeploy(
     require => Exec['install ceph'],
   }
 
-#  file { 'osd bootstrap key':
-#    path => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
-#    mode => 0640,
-#  }
-
-#  file { 'mds bootstrap key':
-#    path => '/var/lib/ceph/bootstrap-mds/ceph.keyring',
-#    mode => 0640,
-#  }
-
-
 ## If the ceph node is also running nova-compute
 
   if $has_compute {
