@@ -22,14 +22,8 @@ define cephdeploy::osd(
     unless  => "/usr/bin/test -e /etc/ceph/ceph.conf",
   }
 
-  if $::hostname == $ceph_primary_mon {
-    $doisudo = "/usr/bin/sudo /usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon"
-  } else {
-    $doisudo = "/usr/local/bin/ceph-deploy gatherkeys $ceph_primary_mon"
-  }
-
   exec { "gatherkeys_$disk":
-    command => $doisudo,
+    command => "/usr/bin/scp $user@$ceph_primary_mon:bootstrap/*.key* .",
     user    => $user,
     cwd     => "/home/$user/bootstrap",
     require => [ Exec['install ceph'], File["/etc/sudoers.d/$user"], Exec["get config $disk"] ],

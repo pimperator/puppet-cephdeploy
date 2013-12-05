@@ -1,4 +1,5 @@
 class cephdeploy::mon(
+  $ceph_primary_mon = hiera('ceph_primary_mon'),
   $user             = hiera('ceph_deploy_user'),
   $public_interface = hiera('ceph_public_interface'),
   $public_network   = hiera('ceph_public_network'),
@@ -6,22 +7,25 @@ class cephdeploy::mon(
 
   include cephdeploy
 
-  file { "/var/lib/ceph/$cluster.bootstrap-osd.keyring":
-    mode => 0644,
-    require => Exec['create mon'],
-  }
-
-  file { "/var/lib/ceph/$cluster.bootstrap-mds.keyring":
-    mode => 0644,
-    require => Exec['create mon'],
-  }
-
   exec { 'create mon':
     cwd      => "/home/$user/bootstrap",
     command  => "/usr/bin/sudo /usr/local/bin/ceph-deploy mon create $::hostname",
     unless   => "/usr/bin/sudo /usr/bin/ceph --cluster=ceph --admin-daemon /var/run/ceph/`hostname -s`-mon.ceph.asok mon_status",
     require  => Exec['install ceph'],
     user     => $user,
+  }
+
+  if $ceph_primary_mon == $::hostname {
+    exec { 'copy keys':
+      command => "cp /var/lib/ceph/bootstrap-mds/$cluster.keyring /home/$user/bootstrap/$cluster.bootstrap-mds.keyring \
+                  cp /var/lib/ceph/bootstrap-osd/$cluster.keyring /home/$user/bootstrap/$cluster.bootstrap-osd.keyring \
+                  cp /etc/ceph/ceph.client.admin.keyring /home/$user/bootstrap/ceph.client.admin.keyring \
+                  cp /var/lib/ceph/mon/ceph-$ceph_primary_mon/keyring /home/$user/bootstrap/ceph.mon.keyring \
+                  chown $user:$user /home/$user/bootstrap/* \
+                  chmod 644 /home/$user/bootstrap/*
+                  ",
+      require => Exec['create mon'],
+    }
   }
 
   exec {'iptables mon':
