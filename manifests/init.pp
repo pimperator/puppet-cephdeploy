@@ -139,6 +139,7 @@ class cephdeploy(
     path    => "/home/$user/bootstrap/ceph.mon.keyring",
     content => template('cephdeploy/ceph.mon.keyring.erb'),
     require => File["/home/$user/bootstrap/ceph.conf"],
+    unless  => "/usr/bin/test -e /home/$user/bootstrap/ceph.mon.keyring",
   }
 
   package { 'libgoogle-perftools0':
@@ -173,12 +174,14 @@ class cephdeploy(
     file { '/etc/ceph/secret.xml':
       content => template('cephdeploy/secret.xml-compute.erb'),
       require => Exec['install ceph'],
+      unless  => "/usr/bin/test -e /etc/ceph/secret.xml",
     }
 
     exec { 'get-or-set virsh secret':
       command => '/usr/bin/virsh secret-define --file /etc/ceph/secret.xml | /usr/bin/awk \'{print $2}\' | sed \'/^$/d\' > /etc/ceph/virsh.secret',
       creates => "/etc/ceph/virsh.secret",
       require => [ Package['libvirt-bin'], File['/etc/ceph/secret.xml'] ],
+      unless  => "/usr/bin/test -e /etc/ceph/virsh.secret",
     }
 
     exec { 'set-secret-value virsh':

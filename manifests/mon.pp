@@ -6,7 +6,7 @@ class cephdeploy::mon(
   $public_network   = hiera('ceph_public_network'),
 ){
 
-  include cephdeploy
+#  include cephdeploy
 
   exec { 'create mon':
     cwd      => "/home/$user/bootstrap",
