@@ -1,15 +1,14 @@
 Automating ceph-deploy
 ======================
 
-This puppet module allows you to fully automate the deployment of a ceph cluster. The need for this sort of functionality came about with the goal of full bottom-up automation of an OpenStack cloud that is ceph-backed.
-
-This module will also configure OpenStack cinder and nova-compute nodes to use the ceph cluster.
-
-*This automation will be implemented in the Havana release of [Cisco OpenStack Installer](http://docwiki.cisco.com/wiki/OpenStack:Grizzly-Multinode)*
+This puppet module is a fork from https://github.com/madkiss/puppet-cephdeploy
+Reasons for cloning:
+* setting up multiple ceph-clouds with one puppet-instance (i.e. testing, live)
+* removing cinder configuration
 
 Questions? Comments?
-Donald Talton
-dotalton@cisco.com
+mailto: github@lukacs.lu
+
 
 * KNOWN BUG *
 ceph and mongodb do not seem to co-habitate well due to differences in google-libperftools (0 vs 4 for mongo).
