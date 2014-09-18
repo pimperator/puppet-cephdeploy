@@ -9,6 +9,9 @@ Reasons for cloning:
 Questions? Comments?
 mailto: github@lukacs.lu
 
+Beware!!
+-----------------
+I havent done anything yet.
 
 * KNOWN BUG *
 ceph and mongodb do not seem to co-habitate well due to differences in google-libperftools (0 vs 4 for mongo).
